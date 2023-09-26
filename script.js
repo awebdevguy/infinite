@@ -1,10 +1,6 @@
 /*jshint esversion: 8 */ 
 
-
 // Unsplash API
-import require from "./node_modules/require";
-const functions = require("./node_modules/firebase-functions");
-let config = require("./env.json");
 const imageContainer = document.getElementById("image-container");
 const loader = document.getElementById("loader");
 let fetchCount = 5;
@@ -13,33 +9,20 @@ let numberOfImagesLoaded = 0;
 let totalImages = 0;
 let photosArray = [];
 
-if (Object.keys(functions.config()).length) {
-  config = functions.config();
-}
-
 getPhotos();
-
-  // const result = await fetch(`/.netlify/functions/api?source=${selectedSource}&search=${search}&page=${page}&per_page=${per_page}`);
-  // const data = await result.json();
-  // console.log(data);
 
 // Get photos from Unsplash API
 async function getPhotos() {
   try {
-    // const response = await fetch(getURL(config.unsplash_api.key, fetchCount));
+
     const response = await fetch(`/.netlify/functions/fetch?count=${fetchCount}`);
-    photosArray = await response.json();
-    console.log("data: " + JSON.stringify(photosArray));
+    const photosArray = await response.json();
     displayPhotos(photosArray);
+
   } catch (error) {
     console.log("There was a problem fetching photos: " + error);
   }
 }
-
-// Put URL together using template literals, which only works inside functions.
-// function getURL(key, count) {
-//   return `https://api.unsplash.com/photos/random?client_id=${key}&count=${count}`;
-// }
 
 // Create Elements for Links and Photos, then add to DOM
 function displayPhotos(pArray) {
