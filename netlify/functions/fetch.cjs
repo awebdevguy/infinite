@@ -6,8 +6,9 @@ exports.handler = async (event, context) => {
   const params = await event.queryStringParameters;
   const {count} = params;
   const {KEY} = process.env;
+  const corsProxy = 'https://corsproxy.io/?'
 
-  let  resp = await fetch(`https://api.unsplash.com/photos/random?client_id=${KEY}&count=${count}`);    
+  let  resp = await fetch(corsProxy + `https://api.unsplash.com/photos/random?client_id=${KEY}&count=${count}`);    
   const data = await resp.json();
     
   return {
