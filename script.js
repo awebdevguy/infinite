@@ -16,7 +16,7 @@ async function getPhotos() {
   try {
 
     const response = await fetch(`/.netlify/functions/fetch?count=${fetchCount}`);
-    const photosArray = await response.json();
+    photosArray = await response.json();
     displayPhotos(photosArray);
 
   } catch (error) {
