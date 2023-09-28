@@ -7,7 +7,7 @@ let fetchCount = 5;
 let isReady = false;
 let numberOfImagesLoaded = 0;
 let totalImages = 0;
-// let photosArray = [];
+let photosArray = [];
 
 const promise = getPhotos();
 promise.then((data) => displayPhotos(data));
@@ -19,8 +19,8 @@ async function getPhotos() {
     const response = await fetch(`/.netlify/functions/fetch?count=${fetchCount}`);
     console.log("response: " + response);
     // const photosArray = await response.json();
-    const data = await response.json();
-    return data;
+    photosArray = await response.json();
+    return photosArray;
     console.log("photosArray: " + photosArray);
     // displayPhotos(photosArray);
 
