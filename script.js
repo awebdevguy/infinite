@@ -9,8 +9,9 @@ let numberOfImagesLoaded = 0;
 let totalImages = 0;
 let photosArray = [];
 
-const promise = getPhotos();
-promise.then((data) => displayPhotos(data));
+getPhotos();
+// const promise = getPhotos();
+// promise.then((data) => displayPhotos(data));
 
 // Get photos from Unsplash API
 async function getPhotos() {
@@ -20,9 +21,9 @@ async function getPhotos() {
     console.log("response: " + response);
     // const photosArray = await response.json();
     photosArray = await response.json();
-    return photosArray;
+    // return photosArray;
     console.log("photosArray: " + photosArray);
-    // displayPhotos(photosArray);
+    displayPhotos(photosArray);
 
   } catch (error) {
     console.log("There was a problem fetching photos: " + error);
