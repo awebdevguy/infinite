@@ -7,10 +7,10 @@ let fetchCount = 5;
 let isReady = false;
 let numberOfImagesLoaded = 0;
 let totalImages = 0;
-let photosArray = [];
+// let photosArray = [];
 
 const promise = getPhotos();
-promise.then(displayPhotos(photosArray));
+promise.then((data) => displayPhotos(data));
 
 // Get photos from Unsplash API
 async function getPhotos() {
@@ -18,7 +18,9 @@ async function getPhotos() {
 
     const response = await fetch(`/.netlify/functions/fetch?count=${fetchCount}`);
     console.log("response: " + response);
-    photosArray = await response.json();
+    // const photosArray = await response.json();
+    const data = await response.json();
+    return data;
     console.log("photosArray: " + photosArray);
     // displayPhotos(photosArray);
 
