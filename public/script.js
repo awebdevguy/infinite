@@ -1,6 +1,7 @@
-/*jshint esversion: 8 */ 
 
 // Unsplash API
+
+
 const imageContainer = document.getElementById("image-container");
 const loader = document.getElementById("loader");
 let fetchCount = 5;
@@ -9,16 +10,19 @@ let numberOfImagesLoaded = 0;
 let totalImages = 0;
 let photosArray = [];
 
+
 getPhotos();
 
 // Get photos from Unsplash API
 async function getPhotos() {
   try {
 
-    const response = await fetch(`.netlify/functions/api?count=${fetchCount}`);
+    const response = await fetch(`/.netlify/functions/api?count=${fetchCount}`);
     console.log("response: " + response);
+
     photosArray = await response.json();
     console.log("photosArray: " + photosArray);
+
     displayPhotos(photosArray);
 
   } catch (error) {
